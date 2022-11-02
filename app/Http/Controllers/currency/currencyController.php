@@ -25,14 +25,14 @@ class currencyController extends Controller
         }
         requestModel::create($req->all());
         
-        $cur = requestModel::orderBy('id','desc')->value('cur');  
-
+        $cur = requestModel::orderBy('id','desc')->value('cur');
+        $toCur = 'rub';
         $url = 'https://api.apilayer.com/exchangerates_data/convert';
 
         $options = array(
         'amount'=> 1,
         'from'=> $cur,
-        'to'=> 'rub',
+        'to'=> $toCur,
         'apikey' => 'eokdfqbKu7epkADr7yjBx5DMbnIxGT92' ,   );
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -44,9 +44,9 @@ class currencyController extends Controller
       
           
         $result = $data      ['result'];
-      
+        answerModel::create(["result"=>$result]); 
         $toTelegram="Текущий курс $cur по отношению к RUB:".$result;
-        
+        fullModel::create(["cur"=>$cur,"toCur"=>$toCur,"result"=>$result]); 
         //echo $toTelegram;
         $token="5730101848:AAEhpZGMSIrAc6D9FzEzzYJ9g8NlJPuVLi4";
       $chatID = "-1001676777228";//"1611970875";

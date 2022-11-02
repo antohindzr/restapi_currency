@@ -8,18 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class fullModel extends Model
 {
     use HasFactory;
-    protected $table = "full";
+    protected $table = "full_currency";
     public $timestamps = false;
 
     protected $fillable = [
-        'lat',
-        'lon',
-        'dt',
-        'city',
-        'country',
-        'weather',
-        'temp',
-        'pressure',
-        'humidity'
+        'cur',
+        'toCur',
+        'result'
     ];
 }

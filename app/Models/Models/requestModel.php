@@ -12,8 +12,7 @@ class requestModel extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'cur'
-        
+        'cur'        
     ];
 }
 
